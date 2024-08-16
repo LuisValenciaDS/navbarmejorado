@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"); 
+/* Importa la fuente 'Poppins' en varios grosores desde Google Fonts */
+
+* {
+  margin: 0; /* Elimina los márgenes por defecto de todos los elementos */
+  padding: 0; /* Elimina el padding por defecto de todos los elementos */
+  box-sizing: border-box; /* Asegura que el padding y el borde se incluyan dentro del ancho y alto de los elementos */
+  font-family: "Poppins", sans-serif; /* Aplica la fuente 'Poppins' a todos los elementos */
+}
+
+body {
+  min-height: 100vh; /* Establece una altura mínima del cuerpo del documento igual a la altura completa de la ventana gráfica */
+  background: url("background.jpg") no-repeat; /* Establece una imagen de fondo que no se repetirá */
+  background-size: cover; /* Escala la imagen de fondo para cubrir toda el área disponible */
+  background-position: center; /* Centra la imagen de fondo en el cuerpo del documento */
+}
+
+.header {
+  position: fixed; /* Fija la posición del encabezado en la parte superior de la página, incluso al hacer scroll */
+  top: 0; /* Posiciona el encabezado en la parte superior de la ventana */
+  left: 0; /* Alinea el encabezado al lado izquierdo de la ventana */
+  width: 100%; /* Establece que el encabezado ocupe el 100% del ancho de la ventana */
+  padding: 20px 100px; /* Agrega espacio interno: 20px arriba y abajo, 100px a los lados */
+  background: rgba(255, 255, 255, 0.1); /* Fondo blanco translúcido */
+  display: flex; /* Utiliza Flexbox para alinear los elementos dentro del encabezado */
+  justify-content: space-between; /* Distribuye los elementos del encabezado uniformemente */
+  align-items: center; /* Centra verticalmente los elementos dentro del encabezado */
+  backdrop-filter: blur(10px); /* Aplica un efecto de desenfoque al fondo detrás del encabezado */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Añade un borde inferior translúcido */
+  z-index: 100; /* Asegura que el encabezado esté por encima de otros elementos en la página */
+}
+
+.header::before {
+  content: ""; /* Crea un pseudo-elemento vacío antes del contenido del encabezado */
+  position: absolute; /* Posiciona el pseudo-elemento de forma absoluta dentro del encabezado */
+  top: 0; /* Alinea el pseudo-elemento en la parte superior del encabezado */
+  left: -100%; /* Lo posiciona fuera del borde izquierdo del encabezado */
+  width: 100%; /* Establece que el pseudo-elemento ocupe todo el ancho del encabezado */
+  height: 100%; /* Establece que el pseudo-elemento ocupe toda la altura del encabezado */
+  background: linear-gradient( /* Aplica un gradiente lineal como fondo del pseudo-elemento */
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: 0.5s; /* Suaviza la transición de los cambios de estilo en 0.5 segundos */
+}
+
+.header:hover::before {
+  left: 100%; /* Desplaza el pseudo-elemento hacia la derecha cuando se pasa el mouse sobre el encabezado */
+}
+
+.logo {
+  color: #fff; /* Establece el color del texto del logo en blanco */
+  font-size: 25px; /* Tamaño de fuente del logo */
+  text-decoration: none; /* Elimina la subrayado del logo si es un enlace */
+  font-weight: 600; /* Aplica un peso de fuente medio al logo */
+  cursor: default; /* Indica que el logo no es clickeable, mantiene el cursor por defecto */
+}
+
+.navbar {
+  display: flex; /* Asegura que el menú se muestre en la vista de PC */
+  align-items: center;
+}
+.navbar a {
+  color: #fff; /* Establece el color de los enlaces de la barra de navegación en blanco */
+  font-size: 18px; /* Tamaño de fuente de los enlaces */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  margin-left: 35px; /* Añade un margen a la izquierda de cada enlace para separarlos */
+  transition: 0.3s; /* Suaviza la transición de los cambios de estilo en 0.3 segundos */
+}
+
+.navbar a:hover {
+  color: #f00; /* Cambia el color del enlace a rojo cuando se pasa el mouse sobre él */
+}
+
+#menu-icon {
+  font-size: 36px; /* Tamaño de fuente para el ícono del menú */
+  color: #fff; /* Color del ícono del menú en blanco */
+  display: none; /* Oculta el ícono del menú por defecto */
+  cursor: pointer;
+}
+
+/* BREAKPOINTS: Reglas de estilo para diferentes tamaños de pantalla */
+@media (max-width: 992px) {
+  .header {
+    padding: 1.25rem 4%; /* Reduce el padding del encabezado para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 768px) {
+  #menu-icon {
+    display: block; /* Muestra el ícono del menú en pantallas más pequeñas */
+  }
+
+  .navbar {
+    display: none;
+    position: absolute; /* Posiciona la barra de navegación de forma absoluta */
+    top: 100%; /* Alinea la barra de navegación justo debajo del encabezado */
+    left: 0; /* Alinea la barra de navegación al lado izquierdo de la ventana */
+    width: 100%; /* Establece que la barra de navegación ocupe todo el ancho de la ventana */
+    padding: 0.5rem 4%; /* Agrega padding interno a la barra de navegación */
+    display: none; /* Oculta la barra de navegación por defecto en pantallas pequeñas */
+    text-align: center; /* Centra el texto */
+  }
+
+  .navbar.active {
+    display:block; /* Muestra la barra de navegación cuando tiene la clase 'active' */
+    flex-direction: column;
+    align-items: center; /* Centra los elementos verticalmente */
+  }
+
+  .navbar a {
+    display: block; /* Hace que los enlaces de la barra de navegación se muestren en bloque */
+    margin: 1.5rem 0; /* Añade un margen vertical a cada enlace */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    width: 100%; /* Asegura que los enlaces ocupen todo el ancho disponible */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .navbar.active a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .navbar a:nth-child(1) { transition-delay: 0.1s; }
+  .navbar a:nth-child(2) { transition-delay: 0.2s; }
+  .navbar a:nth-child(3) { transition-delay: 0.3s; }
+  .navbar a:nth-child(4) { transition-delay: 0.4s; }
+  .navbar a:nth-child(5) { transition-delay: 0.5s; }
+
+  .nav-bg {
+    position: absolute; /* Posiciona el fondo de la barra de navegación de forma absoluta */
+    top: 79px; /* Alinea el fondo justo debajo del encabezado */
+    left: 0; /* Alinea el fondo al lado izquierdo de la ventana */
+    width: 100%; /* Establece que el fondo ocupe todo el ancho de la ventana */
+    height: 295px; /* Establece la altura del fondo */
+    background: rgba(255, 255, 255, 0.1); /* Fondo blanco translúcido */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Añade un borde inferior translúcido */
+    backdrop-filter: blur(10px); /* Aplica un efecto de desenfoque al fondo detrás de la barra de navegación */
+    z-index: 99; /* Asegura que el fondo esté debajo del encabezado */
+    display: none; /* Oculta el fondo por defecto en pantallas pequeñas */
+  }
+
+  .nav-bg.active {
+    display: block; /* Muestra el fondo cuando tiene la clase 'active' */
+  }
+}
