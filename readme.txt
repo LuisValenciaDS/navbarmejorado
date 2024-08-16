@@ -14,3 +14,6 @@ git push -u origin main
 
 
 Cambio actualizar
+git add .
+git commit -m "xxxxx"
+git push
